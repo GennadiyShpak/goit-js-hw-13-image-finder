@@ -14,7 +14,7 @@ const imageApi = new ImageApi ();
 refs.searchForm.addEventListener('submit', onSearch)
 refs.loadMorehBtn.addEventListener('click', loadMoreBtnHandler)
 
-function imageMarkupHandler(img) {
+async function imageMarkupHandler(img) {
   const markup = galleryItemTemplate(img);
   refs.galleryPicture.insertAdjacentHTML('beforeend',markup )
 ;}
@@ -27,11 +27,11 @@ async function onSearch(e) {
     return
   }
   await imageApi.resetInput()
-  await clearHtmlMarckup()
-  await beforePromiseOnSearchFoo()
+  clearHtmlMarckup()
+  beforePromiseOnSearchFoo()
   const img = await imageApi.fetchImage()
-  await afterPromiseOnSearchFoo();
-  await imageMarkupHandler(img);
+  afterPromiseOnSearchFoo();
+  imageMarkupHandler(img);
 }
 
 async function loadMoreBtnHandler() {
@@ -40,7 +40,7 @@ async function loadMoreBtnHandler() {
     const img = await imageApi.fetchImage()
     await imageMarkupHandler(img);
     enableBtn();
-    scrollTo (refs.loadMorehBtn)
+    scrollTo(refs.loadMorehBtn)
   }
   catch {
     console.log('aaa');

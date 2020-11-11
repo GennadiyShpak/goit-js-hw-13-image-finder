@@ -16,6 +16,7 @@ body {
 .search-form--wrapper {
   max-width: 1240px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .search-form input {

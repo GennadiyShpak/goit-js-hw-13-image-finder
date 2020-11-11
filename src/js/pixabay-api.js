@@ -11,7 +11,7 @@ export default class ImageApi {
     try{
         const responce = await fetch(`${BASE_URL}&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
         const data = await responce.json()
-        await this.incrementPage();
+        this.incrementPage();
         return data.hits;}  
         catch {error=>colsole.log(error)}
     }
