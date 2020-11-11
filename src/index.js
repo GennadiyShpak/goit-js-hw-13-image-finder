@@ -35,7 +35,8 @@ async function onSearch(e) {
 }
 
 async function loadMoreBtnHandler() {
-  try {await disabelBtn ()
+  try {
+    disabelBtn ()
     const img = await imageApi.fetchImage()
     await imageMarkupHandler(img);
     enableBtn();
@@ -44,7 +45,6 @@ async function loadMoreBtnHandler() {
   catch {
     console.log('aaa');
   }
-  
 }
 
 function clearHtmlMarckup () {
@@ -81,7 +81,7 @@ function scrollTo (el) {
   console.log(el.offsetTop);
 window.scrollTo({
   left: 0,
-  top: 2400,
+  top: el.offsetTop,
   behavior: 'smooth'
 })
 }
