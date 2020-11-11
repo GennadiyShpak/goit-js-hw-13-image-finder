@@ -19,25 +19,32 @@ function imageMarkupHandler(img) {
   refs.galleryPicture.insertAdjacentHTML('beforeend',markup )
 ;}
 
-function onSearch(e) {
+async function onSearch(e) {
   e.preventDefault();
   const form = e.currentTarget;
   imageApi.query = form.elements.query.value;
   if (imageApi.query==='') {
     return
   }
-  imageApi.resetInput()
-  clearHtmlMarckup()
-  beforePromiseOnSearchFoo()
-  imageApi.fetchImage()
-  .then(img=>{
-    afterPromiseOnSearchFoo();
-    imageMarkupHandler(img);})
+  await imageApi.resetInput()
+  await clearHtmlMarckup()
+  await beforePromiseOnSearchFoo()
+  const img = await imageApi.fetchImage()
+  await afterPromiseOnSearchFoo();
+  await imageMarkupHandler(img);
 }
 
-function loadMoreBtnHandler() {
-  imageApi.fetchImage()
-  .then(img=>{imageMarkupHandler(img)})
+async function loadMoreBtnHandler() {
+  try {await disabelBtn ()
+    const img = await imageApi.fetchImage()
+    await imageMarkupHandler(img);
+    enableBtn();
+    scrollTo (refs.loadMorehBtn)
+  }
+  catch {
+    console.log('aaa');
+  }
+  
 }
 
 function clearHtmlMarckup () {
@@ -52,9 +59,29 @@ function afterPromiseOnSearchFoo() {
 }
 
 function beforePromiseOnSearchFoo() {
-  refs.loadMorehBtn.classList.remove('is-hidden')
+  refs.loadMorehBtn.classList.remove('is-hidden');
+  disabelBtn();
+}
+
+function enableBtn() {
+  refs.loadMorehBtn.disabled = false;
+  refs.searchBtn.disabled = false;
+  refs.spinerOfLoadMorehBtn.classList.add('is-hidden');
+  refs.spinerOfSerarchBtn.classList.add('is-hidden');
+}
+
+function disabelBtn () {
   refs.loadMorehBtn.disabled = true;
+  refs.searchBtn.disabled = true;
   refs.spinerOfLoadMorehBtn.classList.remove('is-hidden');
   refs.spinerOfSerarchBtn.classList.remove('is-hidden');
-  refs.searchBtn.disabled = true;
+}
+
+function scrollTo (el) {
+  console.log(el.offsetTop);
+window.scrollTo({
+  left: 0,
+  top: 2400,
+  behavior: 'smooth'
+})
 }

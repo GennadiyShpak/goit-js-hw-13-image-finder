@@ -8,5 +8,6 @@ export default function refsHanler () {
         loadMorehBtn: document.querySelector('.load-more__btn'),
         spinerOfSerarchBtn: document.querySelector('.btn-search__wrapper'),
         spinerOfLoadMorehBtn: document.querySelector('.btn-loader__wrapper'),
+        abc: document.querySelector('.load-more__btn--wrapper')
    }
 }

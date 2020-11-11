@@ -7,14 +7,13 @@ export default class ImageApi {
         this.searchQuery = '';
     }
 
-    fetchImage () {
-        console.log(this);
-        return fetch(`${BASE_URL}&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
-        .then(responce => responce.json())
-        .then(data => {
-            this.incrementPage();
-            return data.hits;
-        })
+    async fetchImage () {
+    try{
+        const responce = await fetch(`${BASE_URL}&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
+        const data = await responce.json()
+        await this.incrementPage();
+        return data.hits;}  
+        catch {error=>colsole.log(error)}
     }
 
     get query () {
