@@ -14,7 +14,7 @@ body {
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 .search-form--wrapper {
-  max-width: 1240px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -67,4 +67,19 @@ body {
 
 .is-hidden {
   display: none;
+}
+
+.photo-card {
+  position: relative;
+}
+
+.stats {
+  width: 100%;
+  background-color: black;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  right: 0;
+  color: antiquewhite;
+  justify-content: space-around;
 }

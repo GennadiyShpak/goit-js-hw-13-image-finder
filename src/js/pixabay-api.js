@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+
 const API_KEY = '18984826-9a089bf93f102eeea865f0aeb';
 const BASE_URL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal'
 
@@ -10,10 +12,16 @@ export default class ImageApi {
     async fetchImage () {
     try{
         const responce = await fetch(`${BASE_URL}&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
-        const data = await responce.json()
-        this.incrementPage();
-        return data.hits;}  
-        catch {error=>colsole.log(error)}
+        if (responce.ok) {
+            const data = await responce.json()
+            this.incrementPage();
+            return data.hits;
+        }
+        throw new Error (data.statusText);
+        }  
+        catch {
+            error=>colsole.log(error)
+        }
     }
 
     get query () {
