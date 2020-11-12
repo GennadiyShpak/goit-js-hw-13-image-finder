@@ -83,3 +83,13 @@ body {
   color: antiquewhite;
   justify-content: space-around;
 }
+
+.button__wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+.way-to-input {
+  width: 70px;
+  height: auto;
+}

@@ -7,6 +7,6 @@ export default function refsHanler () {
         searchBtn: document.querySelector('.search-form__btn'),
         spinerOfSerarchBtn: document.querySelector('.btn-search__wrapper'),
         iOHelper: document.querySelector('.io-helper'),
-        gar: document.querySelector('.gallery__img')
+        toInputBtn: document.querySelector('.way-to-input')
       }
 }

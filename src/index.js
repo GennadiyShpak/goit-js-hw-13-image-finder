@@ -18,6 +18,7 @@ const imageApi = new ImageApi ();
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.galleryPicture.addEventListener('click', openModal);
+refs.toInputBtn.addEventListener('click', scrollTo )
 
 async function imageMarkupHandler(img) {
   const markup = imgTemplate(img);
@@ -113,3 +114,11 @@ function errorInputHandler() {
     })
     return incorrectError;
 }
+
+function scrollTo () {
+  window.scrollTo({
+    left: 0,
+    top: 0,
+    behavior: 'smooth'
+  })
+  }
