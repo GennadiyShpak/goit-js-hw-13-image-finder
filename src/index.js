@@ -8,10 +8,7 @@ import ImageApi from './js/pixabay-api';
 import imgTemplate from './handlebars/picture.hbs';
 import error from './js/pnotify/pnotify.js'
 
-import refsHanler from './js/refs'
-
-
-const refs = refsHanler();
+import refs from './js/refs'
 
 const imageApi = new ImageApi ();
 
@@ -82,7 +79,7 @@ function openModal (e) {
   instance.show()
 };
 
-const collback = (entries) => {
+const callback = (entries) => {
     entries.forEach(async entry => {
       imageApi.query = refs.searchInput.value;
     if (entry.isIntersecting && refs.searchInput.value !== '') {
@@ -90,7 +87,6 @@ const collback = (entries) => {
         const img = await imageApi.fetchImage()
         imageMarkupHandler(img);
         imageApi.incrementPage()
-        console.log(refs.searchInput.value);
       }
       catch {
         errorInputHandler()
@@ -103,7 +99,7 @@ const options = {
   rootMargin: '600px',
   
 };
-const observer = new IntersectionObserver(collback, options);
+const observer = new IntersectionObserver(callback, options);
 observer.observe(refs.iOHelper);
 
 function errorInputHandler() {
